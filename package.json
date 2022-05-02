@@ -1,10 +1,10 @@
 {
-  "name": "irnode_telegram_bot_main",
-  "version": "1.0.0",
-  "description": "",
+  "name": "irnode_lb",
+  "version": "1.0.4",
+  "description": "this is my personal npm package",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --ignore enomad_db.json",
+    "start": "nodemon index.js --ignore irnode_tlb_data_base.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
