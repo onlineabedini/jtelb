@@ -28,3 +28,9 @@ sample ->  "scripts": {
 start bot again then enjoy.
 
 ```
+
+### github repository
+https://github.com/onlineabedini/irnode_tlb/
+
+### npm
+https://www.npmjs.com/package/irnode_tlb
