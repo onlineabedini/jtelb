@@ -6,7 +6,14 @@ module.exports = new class name {
 `
 
 readme_data = `
-// here is read me for functions
+    
+    definition:
+    -> define class and functions
+    -> module.exports = new className {}
+
+    usage
+    -> import class and use functions
+
 `
 
 module.exports = {

@@ -9,7 +9,18 @@ module.exports = {
 `
 
 readme_data = `
-// here is read me for keyboard
+
+    definition:
+    -> define like the default sample
+
+        main_keyboard = [
+            ['btn1', 'btn2', 'btn3'],
+            ['btn4', 'btn5', 'btn6'],
+        ]
+
+    usage:
+    -> only use it's name in reply object! nothing else!
+    
 `
 
 module.exports = {

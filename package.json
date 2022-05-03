@@ -1,6 +1,6 @@
 {
-  "name": "irnode_lb",
-  "version": "1.0.4",
+  "name": "irnode_tlb",
+  "version": "1.0.0",
   "description": "this is my personal npm package",
   "main": "index.js",
   "scripts": {
