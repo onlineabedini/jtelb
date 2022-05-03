@@ -5,18 +5,6 @@ module.exports = new class name {
 }
 `
 
-readme_data = `
-    
-    definition:
-    -> define class and functions
-    -> module.exports = new className {}
-
-    usage
-    -> import class and use functions
-
-`
-
 module.exports = {
     default_data,
-    readme_data,
 }

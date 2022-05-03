@@ -10,27 +10,6 @@ module.exports.main_keyboard_replyes = {
 }
 `
 
-readme_data = `
-
-    definition:
-    -> define replyes like the sample:
-
-    module.exports.main_keyboard_replyes = {
-        "word that bot hears!": [
-            [
-                ['*', "answer", 'image_url', 'video_url', 'keyboard_name'],
-                ['special_session_for_answer', function_you_defiened(), '', '', ''],
-            ],
-            "session_name"
-        ],
-    }
-
-    usage:
-    nothing else! XD just enjoy it!
-
-`
-
 module.exports = {
     default_data,
-    readme_data,
 }

@@ -6,7 +6,7 @@ const dir_app = require('./dir_app')
 
 let reply = ''
 let keyboard_list = ''
-
+let bot = ''
 
 module.exports = new class bot_app {
 

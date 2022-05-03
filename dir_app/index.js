@@ -17,7 +17,6 @@ module.exports = new class dir_app {
         if (!fs.existsSync(__dirname + directory + 'functions')){
             fs.mkdirSync('./functions');
             fs.writeFileSync('./functions/main_functions.js', default_functions_data)
-            fs.writeFileSync('./functions/readme.txt', readme_functions_data)
         }
     }
 
@@ -26,7 +25,6 @@ module.exports = new class dir_app {
         if (!fs.existsSync(__dirname + directory + 'reply')){
             fs.mkdirSync('./reply');
             fs.writeFileSync('./reply/main_replies.js', default_reply_data)
-            fs.writeFileSync('./reply/readme.txt', readme_reply_data)
         }
     }
 
@@ -35,7 +33,6 @@ module.exports = new class dir_app {
         if (!fs.existsSync(__dirname + directory + 'keyboard')){
             fs.mkdirSync('./keyboard');
             fs.writeFileSync('./keyboard/main_keyboard.js', default_keyboard_data)
-            fs.writeFileSync('./keyboard/readme.txt', readme_keyboard_data)
         }
     }
 
