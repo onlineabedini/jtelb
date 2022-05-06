@@ -1,4 +1,4 @@
-# irnode_tlb
+# jtelb
 
 ### last update : 
  - Ctx data added for functions
@@ -9,7 +9,7 @@
 
 ## installation
 ```
--> npm install irnode_tlb
+-> npm install jtelb
 ```
 ```
 
@@ -17,7 +17,7 @@ for usage follow these steps:
 
 step 1: 
 
-const bot = require('irnode_tlb')
+const bot = require('jtelb')
 bot.define_bot('bot token', 'welcome message ( start message text )')
 
 step2:
@@ -28,7 +28,7 @@ install nodemon and run it one time
 step3:
 ignore local session file in package.json
 sample ->  "scripts": {
-  "start": "nodemon index.js --ignore irnode_tlb_data_base.json"
+  "start": "nodemon index.js --ignore jtelb_data.json"
 }
 start bot again then enjoy.
 
@@ -39,7 +39,7 @@ more . . .
 ```
 
 ### github repository
-https://github.com/onlineabedini/irnode_tlb/
+https://github.com/onlineabedini/jtelb/
 
 ### npm
-https://www.npmjs.com/package/irnode_tlb
+https://www.npmjs.com/package/jtelb

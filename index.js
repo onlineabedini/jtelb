@@ -27,7 +27,7 @@ module.exports = new class bot_app {
     configure_bot(token) {
         // define bot
         bot = new Telegraf(token)
-        bot.use((new LocalSession({ database: 'irnode_tlb_data_base.json' })).middleware())
+        bot.use((new LocalSession({ database: 'jtelb_data.json' })).middleware())
     }
 
     bot_directiries_build() {

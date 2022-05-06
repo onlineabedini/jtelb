@@ -1,13 +1,13 @@
 {
-  "name": "irnode_tlb",
-  "version": "1.0.4",
-  "description": "this is my personal npm package",
+  "name": "jtelb",
+  "version": "1.0.0",
+  "description": "this is jgram package",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "onlineabedini onlineabedini@gmail.com",
   "license": "ISC",
   "dependencies": {
     "telegraf": "^4.7.0",
