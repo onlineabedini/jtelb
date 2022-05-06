@@ -37,14 +37,14 @@ start bot again then enjoy.
 
 
 ## usage
-```
+
 after that, you start one time directories will appear automatically
 in that case, you can understand how to use it.
+
 ```
-
-
 ### github repository
 https://github.com/onlineabedini/jtelb/
 
 ### npm
 https://www.npmjs.com/package/jtelb
+```
