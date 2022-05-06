@@ -1,17 +1,15 @@
 {
   "name": "irnode_tlb",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "this is my personal npm package",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --ignore irnode_tlb_data_base.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^2.0.15",
     "telegraf": "^4.7.0",
     "telegraf-session-local": "^2.1.0",
     "telegram-keyboard": "^2.3.0"

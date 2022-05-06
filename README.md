@@ -1,12 +1,17 @@
 # irnode_tlb
 
+### last update : 
+ - Ctx data added for functions
+ - Functions added for reply : now you can do everything!
+ - Issue fixed
+ - picture and video reply deleted from reply array : you can reply in functions now
+ - functions require automaticly
+
 ## installation
-```bash
+```
 -> npm install irnode_tlb
 ```
-
-## usage ( nodejs )
-```bash
+```
 
 for usage follow these steps:
 
@@ -27,6 +32,10 @@ sample ->  "scripts": {
 }
 start bot again then enjoy.
 
+```
+## usage
+```
+more . . . 
 ```
 
 ### github repository

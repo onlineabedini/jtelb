@@ -1,7 +1,9 @@
 default_data = `
 module.exports = new class name {
     constructor() {}
-    data() {}
+    data(ctx) {
+        ctx.reply('Hello World!')
+    }
 }
 `
 

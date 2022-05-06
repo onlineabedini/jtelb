@@ -4,6 +4,8 @@ module.exports.main_keyboard_replyes = {
     btn1: [
         [
             ['*', "this is btn1 answer!! your bot is working!!", '', '', ''],
+            ['*', "fun.data", '', '', ''],
+            ['*', "fun.data()", '', '', ''],
         ],
         "btn1"
     ],

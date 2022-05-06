@@ -1,4 +1,5 @@
 // packages
+const fs = require('fs');
 const { Telegraf } = require('telegraf')
 const { Keyboard } = require('telegram-keyboard')
 const LocalSession = require('telegraf-session-local')
@@ -6,22 +7,20 @@ const dir_app = require('./dir_app')
 
 let reply = ''
 let keyboard_list = ''
+let functions = {}
 let bot = ''
+let defien_function = "fun."
 
 module.exports = new class bot_app {
-
     define_bot(token, start_message) {
         // config
         this.configure_bot(token)
-
-        // define and build files
         this.bot_directiries_build()
+        this.require_func()
 
-        // start bot and hear
+        // Bot Ans
         this.bot_start(start_message)
         this.bot_hears()
-
-        // lunch
         this.lunch_bot()
     }
 
@@ -41,6 +40,12 @@ module.exports = new class bot_app {
         keyboard_list = require('./data_app/keyboard')
     }
 
+    require_func() {
+        fs.readdirSync(__dirname + './../../functions/').forEach(file => {
+            functions = require(__dirname + `./../../functions/${file}`)
+        })
+    }
+
     bot_start(start_message) {
         // start
         bot.start((ctx) => {
@@ -49,26 +54,27 @@ module.exports = new class bot_app {
             ctx.session.name = ctx.message.from.first_name
             ctx.session.status = "started"
 
-            let sr_msg = start_message? start_message : `Hello ${ctx.session.name}! I am irnode_tlb_bot.`
+            let sr_msg = start_message ? start_message : `Hello ${ctx.session.name}! I am irnode_tlb_bot.`
             ctx.reply(sr_msg, keyboard.reply())
         })
     }
 
     bot_hears() {
-        // hear and reply
         bot.hears(Object.keys(reply.replyes), (ctx) => {
+
             let ans = reply.replyes[ctx.match[0]][0]
             let array_num = 0
             for (let states of ans) {
                 if (states[0] === ctx.session.status || states[0] === '*') {
-                    // reply keyboard
-                    const faq_keyboard = Keyboard.make(keyboard_list[states[4]] ? keyboard_list[states[4]] : keyboard_list.main_keyboard);
+                    const faq_keyboard = Keyboard.make(keyboard_list[states[2]] ? keyboard_list[states[2]] : keyboard_list.main_keyboard);
 
-                    // reply content
-                    if (states[2] && states[2] !== '') ctx.replyWithPhoto({ url: states[2] }, { "caption": states[1] }, faq_keyboard.reply())
-                    else if (states[3]) ctx.replyWithVideo({ source: states[3] }, { "caption": states[1] }, faq_keyboard.reply())
-                    else ctx.reply(states[1], faq_keyboard.reply())
-
+                    if (states[1].toString().includes(defien_function)) {
+                        let func_name = states[1].toString().split('.')[1]
+                        if (func_name.includes('(')) func_name = func_name.split('(')[0]
+                        functions[func_name](ctx)
+                    } else {
+                        ctx.reply(states[1] ? states[1] : "not defined by admin!", faq_keyboard.reply())
+                    }
                 } else {
                     array_num++
                 }
@@ -84,11 +90,6 @@ module.exports = new class bot_app {
     lunch_bot() {
         try {
             bot.launch()
-            console.log(`
-        -----------------------------
-        irnode_tlb_bot is lunching...
-        -----------------------------
-        `)
         }
         catch {
             console.log("Please set your token in the file: index.js")
