@@ -9,11 +9,12 @@
 
 ## installation
 ```
--> npm install jtelb
+npm install jtelb
 ```
+
 for usage follow these steps:
 step 1: 
-
+```
 const bot = require('jtelb')
 bot.define_bot('bot token', 'welcome message ( start message text )')
 ```
