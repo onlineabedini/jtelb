@@ -17,11 +17,13 @@ step 1:
 const bot = require('irnode_tlb')
 bot.define_bot('bot token', 'welcome message ( start message text )')
 ```
+
 step2:
 install nodemon and run it one time
 ```
 -> npm install nodemon -g
 ```
+
 step3:
 ```
 ignore local session file in package.json
@@ -31,12 +33,15 @@ sample ->  "scripts": {
 ```
 start bot again then enjoy.
 
-```
+
+
+
 ## usage
 ```
 after that, you start one time directories will appear automatically
 in that case, you can understand how to use it.
 ```
+
 
 ### github repository
 https://github.com/onlineabedini/irnode_tlb/
