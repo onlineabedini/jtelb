@@ -1,5 +1,6 @@
 {
   "name": "jtelb",
+  "license": "MIT",
   "version": "1.0.3",
   "description": "this is jgram package",
   "main": "index.js",
@@ -8,7 +9,6 @@
   },
   "keywords": [],
   "author": "onlineabedini onlineabedini@gmail.com",
-  "license": "ISC",
   "dependencies": {
     "telegraf": "^4.7.0",
     "telegraf-session-local": "^2.1.0",
