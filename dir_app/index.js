@@ -1,17 +1,23 @@
 const fs = require('fs');
 const directory = './../../../'
 
+const default_middleware_data = require('./default_data/middleware').default_data
+
 const default_functions_data = require('./default_data/function').default_data
-const readme_functions_data = require('./default_data/function').readme_data
 
 const default_keyboard_data = require('./default_data/keyboard').default_data
-const readme_keyboard_data = require('./default_data/keyboard').readme_data
 
 const default_reply_data = require('./default_data/reply').default_data
-const readme_reply_data = require('./default_data/reply').readme_data
-
 
 module.exports = new class dir_app {
+    // middleware
+    build_middleware(){
+        if (!fs.existsSync(__dirname + directory + 'middleware')){
+            fs.mkdirSync('./middleware');
+            fs.writeFileSync('./middleware/main_middleware.js', default_middleware_data)
+        }
+    }
+   
     // function
     build_function(){
         if (!fs.existsSync(__dirname + directory + 'functions')){

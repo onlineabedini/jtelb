@@ -20,6 +20,8 @@ module.exports = new class bot_app {
 
         // Bot Ans
         this.bot_start(start_message)
+        this.bot_middleware()
+
         this.bot_hears()
         this.lunch_bot()
     }
@@ -31,6 +33,7 @@ module.exports = new class bot_app {
     }
 
     bot_directiries_build() {
+        dir_app.build_middleware()
         dir_app.build_function()
         dir_app.build_reply()
         dir_app.build_keyboard()
@@ -56,6 +59,16 @@ module.exports = new class bot_app {
 
             let sr_msg = start_message ? start_message : `Hello ${ctx.session.name}! I am irnode_tlb_bot.`
             ctx.reply(sr_msg, keyboard.reply())
+        })
+    }
+
+    bot_middleware() {
+        bot.use((ctx, next) => {
+            fs.readdirSync(__dirname + './../../middleware/').forEach(file => {
+                let middleware = require(__dirname + `./../../middleware/${file}`)
+                middleware.data(ctx)
+            })
+            next()
         })
     }
 

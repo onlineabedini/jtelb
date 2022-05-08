@@ -1,11 +1,8 @@
 # jtelb
 
-### last update : 
- - Ctx data added for functions
- - Functions added for reply : now you can do everything!
- - Issue fixed
- - picture and video reply deleted from reply array : you can reply in functions now
- - functions require automaticly
+### last update ( 1.0.4 ): 
+ - middleware directory and auto require added
+  : now you can use middleware in your project
 
 ## installation
 ```
