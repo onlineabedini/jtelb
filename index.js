@@ -66,16 +66,15 @@ module.exports = new class bot_app {
         bot.use((ctx, next) => {
             fs.readdirSync(__dirname + './../../middleware/').forEach(file => {
                 let middleware = require(__dirname + `./../../middleware/${file}`)
-                middleware.data(ctx)
+                middleware.data(ctx, next)
             })
-            next()
         })
     }
 
     bot_hears() {
         bot.hears(Object.keys(reply.replyes), (ctx) => {
 
-            let ans = reply.replyes[ctx.match[0]][0]
+            let ans = reply.replyes[ctx.match[0]]
             let array_num = 0
             for (let states of ans) {
                 if (states[0] === ctx.session.status || states[0] === '*') {
@@ -85,8 +84,10 @@ module.exports = new class bot_app {
                         let func_name = states[1].toString().split('.')[1]
                         if (func_name.includes('(')) func_name = func_name.split('(')[0]
                         functions[func_name](ctx)
+                        ctx.session.status = states[3] ? states[3] : "main"
                     } else {
                         ctx.reply(states[1] ? states[1] : "not defined by admin!", faq_keyboard.reply())
+                        ctx.session.status = states[3] ? states[3] : "main"
                     }
                 } else {
                     array_num++
@@ -96,7 +97,6 @@ module.exports = new class bot_app {
                     ctx.reply("please complete your current proccess first!")
                 }
             }
-            ctx.session.status = reply.replyes[ctx.match[0]][1] ? reply.replyes[ctx.match[0]][1] : "started"
         })
     }
 
