@@ -13,8 +13,8 @@
 > - you can define your keyboards very easy and use them without requiring
 > - you can define middleware and use them without require
 
-### last update ( 1.0.5 ): 
- - You can write functions, middleware, replies, and keyboard modularly!
+### last update ( 1.0.6 ): 
+ - issue fixed 
 
 ### new features
 - [x] modularly write functioons
