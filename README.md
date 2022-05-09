@@ -44,3 +44,30 @@ https://github.com/onlineabedini/jtelb/
 
 ### npm
 https://www.npmjs.com/package/jtelb
+
+
+## support us
+*main wallet*
+
+**USDT** : 
+```
+TXGn37sGBsspX4eNGDZ3Eu1WEoZN4tBvqn
+```
+
+*other*
+
+**BTC** : 
+```
+bc1qwastlgrkx9tn7su689vprhxe256962v0eqgt8e
+```
+
+**ETH** : 
+```
+0xa8be74c014683ff00ce769ec7728736071fc8c0d
+```
+
+**DOGE** : 
+```
+DLaXi7ofTP38kQgKdWtebJtHAG4jGobeNn
+```
+
