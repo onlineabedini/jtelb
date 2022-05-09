@@ -43,9 +43,18 @@ module.exports = new class bot_app {
         keyboard_list = require('./data_app/keyboard')
     }
 
-    require_func() {
-        fs.readdirSync(__dirname + './../../functions/').forEach(file => {
-            functions = require(__dirname + `./../../functions/${file}`)
+    require_func(sec_path) {
+        let path = __dirname + '/../../functions/'
+        if (sec_path) path = sec_path
+        fs.readdirSync(path).forEach(file => {
+            if (fs.lstatSync(path + file).isDirectory()) {
+                let new_path = path + file + '/'
+                this.require_func(new_path)
+            } else if (file.endsWith('.js')) {
+                functions = require(path + file)
+            } else {
+                console.log("not a function in path: " + path)
+            }
         })
     }
 
@@ -62,12 +71,21 @@ module.exports = new class bot_app {
         })
     }
 
-    bot_middleware() {
-        bot.use((ctx, next) => {
-            fs.readdirSync(__dirname + './../../middleware/').forEach(file => {
-                let middleware = require(__dirname + `./../../middleware/${file}`)
-                middleware.data(ctx, next)
-            })
+    bot_middleware(sec_path) {
+        let path = __dirname + '/../../middleware/'
+        if (sec_path) path = sec_path
+
+        fs.readdirSync(path).forEach(file => {
+            if (fs.lstatSync(path + file).isDirectory()) {
+                let new_path = path + file + '/'
+                this.bot_middleware(new_path)
+            } else if (file.endsWith('.js')) {
+                let middleware = require(path + file)
+                bot.use((ctx, next) => {
+                    middleware.data(ctx)
+                    next()
+                })
+            }
         })
     }
 
@@ -79,13 +97,17 @@ module.exports = new class bot_app {
             for (let states of ans) {
                 if (states[0] === ctx.session.status || states[0] === '*') {
                     const faq_keyboard = Keyboard.make(keyboard_list[states[2]] ? keyboard_list[states[2]] : keyboard_list.main_keyboard);
-
-                    if (states[1].toString().includes(defien_function)) {
-                        let func_name = states[1].toString().split('.')[1]
-                        if (func_name.includes('(')) func_name = func_name.split('(')[0]
-                        functions[func_name](ctx)
-                        ctx.session.status = states[3] ? states[3] : "main"
-                    } else {
+                    try {
+                        if (states[1].toString().includes(defien_function)) {
+                            let func_name = states[1].toString().split('.')[1]
+                            if (func_name.includes('(')) func_name = func_name.split('(')[0]
+                            functions[func_name](ctx)
+                            ctx.session.status = states[3] ? states[3] : "main"
+                        } else {
+                            ctx.reply(states[1] ? states[1] : "not defined by admin!", faq_keyboard.reply())
+                            ctx.session.status = states[3] ? states[3] : "main"
+                        }
+                    } catch {
                         ctx.reply(states[1] ? states[1] : "not defined by admin!", faq_keyboard.reply())
                         ctx.session.status = states[3] ? states[3] : "main"
                     }

@@ -2,15 +2,20 @@ const fs = require('fs')
 let reply_list = {}
 let export_data = {}
 
-const directory = './../../../reply/'
-
-function export_all() {
-    fs.readdirSync(__dirname + directory).forEach(file => {
-        let data = []
-        if (!file.startsWith('index')) {
-            let reply_data = require(__dirname + directory + file)
-            for (let key in reply_data) data = reply_data[key]
-            reply_list = data
+function export_all(sec_path) {
+    let path = __dirname + './../../../reply/'
+    if (sec_path) path = sec_path
+    fs.readdirSync(path).forEach(file => {
+        if (fs.lstatSync(path + file).isDirectory()) {
+            let new_path = path + file + '/'
+            export_all(new_path)
+        } else {
+            if (file.endsWith('.js')) {
+                let data = []
+                let reply_data = require(path + file)
+                for (let key in reply_data) data = reply_data[key]
+                reply_list = data
+            }
         }
         for (let key in reply_list) export_data = { ...export_data, ...reply_list }
     })

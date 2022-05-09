@@ -1,8 +1,7 @@
 # jtelb
 
-### last update ( 1.0.4 ): 
- - middleware directory and auto require added
-  : now you can use middleware in your project
+### last update ( 1.0.5 ): 
+ - You can write functions, middleware, replies, and keyboard modularly!
 
 ## installation
 ```
