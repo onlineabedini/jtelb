@@ -1,6 +1,6 @@
 # jtelb
 
-**Jtelb**  is a special telegram bot framework that makes some stuff auto and close to web Node js project structure.
+**Jtelb**  is a special telegram bot framework based on telegrafjs that makes some stuff auto and close to web Node js project structure.
 
 > #### auto generate basic bot
 > - for start developing using Jtelb you only have to require it and pass a token, then automatically bot directories will deploy, and with samples, you can learn how to use it.
