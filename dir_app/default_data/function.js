@@ -18,6 +18,9 @@ you can have classes of functions that you can use without requiring anywhere
 you can define each kind of replies list that is based on sessions
 you can define your keyboards very easy and use them without requiring
 you can define middleware and use them without require.
+
+NPM -> https://www.npmjs.com/package/jtelb
+Github -> https://github.com/onlineabedini/jtelb
         `
         + '`' + `)
     }

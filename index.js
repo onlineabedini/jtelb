@@ -16,12 +16,10 @@ let def_not_define = "not defined by admin!"
 
 module.exports = new class bot_app {
     define_bot(token, start_message) {
-        // config
         this.configure_bot(token)
         this.bot_directiries_build()
         this.require_func()
 
-        // Bot Ans
         this.bot_start(start_message)
         this.bot_middleware()
 
@@ -30,7 +28,6 @@ module.exports = new class bot_app {
     }
 
     configure_bot(token) {
-        // define bot
         bot = new Telegraf(token)
         bot.use((new LocalSession({ database: 'jtelb_data.json' })).middleware())
     }
@@ -62,7 +59,6 @@ module.exports = new class bot_app {
     }
 
     bot_start(start_message) {
-        // start
         bot.start((ctx) => {
             const keyboard = Keyboard.make(keyboard_list.main_keyboard);
             ctx.session.username = ctx.message.from.username
@@ -93,38 +89,83 @@ module.exports = new class bot_app {
     }
 
     bot_hears() {
-        bot.hears(Object.keys(reply.replyes), (ctx) => {
+        this.hear_inline()
+        this.hear_ctx()
+    }
 
-            let ans = reply.replyes[ctx.match[0]]
-            let array_num = 0
-            for (let states of ans) {
-                if (states[0] === ctx.session.status || states[0] === '*') {
-                    let faq_keyboard
-                    if (states[2].toString().startsWith(define_inline)) faq_keyboard = Keyboard.make(keyboard_list[states[2].split('.')[1]] ? keyboard_list[states[2].split('.')[1]] : keyboard_list.main_keyboard);
-                    else faq_keyboard = Keyboard.make(keyboard_list[states[2]] ? keyboard_list[states[2]] : keyboard_list.main_keyboard);
-
-                    try {
-                        if (states[1].toString().includes(defien_function)) {
-                            let func_name = states[1].toString().split('.')[1]
-                            if (func_name.includes('(')) func_name = func_name.split('(')[0]
-                            functions[func_name](ctx)
-                            ctx.session.status = states[3] ? states[3] : define_main_session
-                        } else {
+    hear_inline() {
+        bot.use((ctx, next) => {
+            if (ctx?.update?.callback_query?.data) {
+                let ans = reply.replyes[ctx?.update?.callback_query?.data]
+                let array_num = 0
+                for (let states of ans) {
+                    if (states[0] === ctx.session.status || states[0] === '*') {
+                        let faq_keyboard
+                        if (states[2].toString().startsWith(define_inline)) faq_keyboard = Keyboard.make(keyboard_list[states[2].split('.')[1]] ? keyboard_list[states[2].split('.')[1]] : keyboard_list.main_keyboard);
+                        else faq_keyboard = Keyboard.make(keyboard_list[states[2]] ? keyboard_list[states[2]] : keyboard_list.main_keyboard);
+                        try {
+                            if (states[1].toString().includes(defien_function)) {
+                                let func_name = states[1].toString().split('.')[1]
+                                if (func_name.includes('(')) func_name = func_name.split('(')[0]
+                                functions[func_name](ctx)
+                                ctx.session.status = states[3] ? states[3] : define_main_session
+                            } else {
+                                if (states[2].toString().startsWith(define_inline)) ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.inline())
+                                else ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.reply())
+                                ctx.session.status = states[3] ? states[3] : define_main_session
+                            }
+                        } catch {
                             if (states[2].toString().startsWith(define_inline)) ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.inline())
                             else ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.reply())
                             ctx.session.status = states[3] ? states[3] : define_main_session
                         }
-                    } catch {
-                        if (states[2].toString().startsWith(define_inline)) ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.inline())
-                        else ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.reply())
-                        ctx.session.status = states[3] ? states[3] : define_main_session
+                    } else {
+                        array_num++
                     }
-                } else {
-                    array_num++
+
+                    if (array_num === ans.length) {
+                        ctx.reply("please complete your current proccess first!")
+                    }
                 }
 
-                if (array_num === ans.length) {
-                    ctx.reply("please complete your current proccess first!")
+            }
+            next()
+        })
+    }
+
+    hear_ctx() {
+        bot.hears(Object.keys(reply.replyes), (ctx) => {
+            if (!ctx?.update?.callback_query?.data) {
+                let ans = reply.replyes[ctx.match[0]]
+                let array_num = 0
+                for (let states of ans) {
+                    if (states[0] === ctx.session.status || states[0] === '*') {
+                        let faq_keyboard
+                        if (states[2].toString().startsWith(define_inline)) faq_keyboard = Keyboard.make(keyboard_list[states[2].split('.')[1]] ? keyboard_list[states[2].split('.')[1]] : keyboard_list.main_keyboard);
+                        else faq_keyboard = Keyboard.make(keyboard_list[states[2]] ? keyboard_list[states[2]] : keyboard_list.main_keyboard);
+                        try {
+                            if (states[1].toString().includes(defien_function)) {
+                                let func_name = states[1].toString().split('.')[1]
+                                if (func_name.includes('(')) func_name = func_name.split('(')[0]
+                                functions[func_name](ctx)
+                                ctx.session.status = states[3] ? states[3] : define_main_session
+                            } else {
+                                if (states[2].toString().startsWith(define_inline)) ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.inline())
+                                else ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.reply())
+                                ctx.session.status = states[3] ? states[3] : define_main_session
+                            }
+                        } catch {
+                            if (states[2].toString().startsWith(define_inline)) ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.inline())
+                            else ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.reply())
+                            ctx.session.status = states[3] ? states[3] : define_main_session
+                        }
+                    } else {
+                        array_num++
+                    }
+
+                    if (array_num === ans.length) {
+                        ctx.reply("please complete your current proccess first!")
+                    }
                 }
             }
         })
