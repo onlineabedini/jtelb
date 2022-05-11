@@ -1,8 +1,9 @@
 default_data = `
 module.exports = new class main_middleware {
-    constructor() {}
+    
     data(ctx, next) {
-        ctx.reply('middleware is working! ' + ctx.from.username) 
+        // middleware works if you uncomment this
+        // ctx.reply('middleware is working! ' + ctx.from.username) 
     }
 }
 `

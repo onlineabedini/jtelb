@@ -10,6 +10,9 @@ let keyboard_list = ''
 let functions = {}
 let bot = ''
 let defien_function = "fun."
+let define_inline = "inline."
+let define_main_session = "main"
+let def_not_define = "not defined by admin!"
 
 module.exports = new class bot_app {
     define_bot(token, start_message) {
@@ -96,20 +99,25 @@ module.exports = new class bot_app {
             let array_num = 0
             for (let states of ans) {
                 if (states[0] === ctx.session.status || states[0] === '*') {
-                    const faq_keyboard = Keyboard.make(keyboard_list[states[2]] ? keyboard_list[states[2]] : keyboard_list.main_keyboard);
+                    let faq_keyboard
+                    if (states[2].toString().startsWith(define_inline)) faq_keyboard = Keyboard.make(keyboard_list[states[2].split('.')[1]] ? keyboard_list[states[2].split('.')[1]] : keyboard_list.main_keyboard);
+                    else faq_keyboard = Keyboard.make(keyboard_list[states[2]] ? keyboard_list[states[2]] : keyboard_list.main_keyboard);
+
                     try {
                         if (states[1].toString().includes(defien_function)) {
                             let func_name = states[1].toString().split('.')[1]
                             if (func_name.includes('(')) func_name = func_name.split('(')[0]
                             functions[func_name](ctx)
-                            ctx.session.status = states[3] ? states[3] : "main"
+                            ctx.session.status = states[3] ? states[3] : define_main_session
                         } else {
-                            ctx.reply(states[1] ? states[1] : "not defined by admin!", faq_keyboard.reply())
-                            ctx.session.status = states[3] ? states[3] : "main"
+                            if (states[2].toString().startsWith(define_inline)) ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.inline())
+                            else ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.reply())
+                            ctx.session.status = states[3] ? states[3] : define_main_session
                         }
                     } catch {
-                        ctx.reply(states[1] ? states[1] : "not defined by admin!", faq_keyboard.reply())
-                        ctx.session.status = states[3] ? states[3] : "main"
+                        if (states[2].toString().startsWith(define_inline)) ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.inline())
+                        else ctx.reply(states[1] ? states[1] : def_not_define, faq_keyboard.reply())
+                        ctx.session.status = states[3] ? states[3] : define_main_session
                     }
                 } else {
                     array_num++
