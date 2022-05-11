@@ -6,23 +6,25 @@
 > - for start developing using Jtelb you only have to require it and pass a token, then automatically bot directories will deploy, and with samples, you can learn how to use it.
 > - basic bot after deployment is ready to use
 
-> 
+
+### last update ( 1.0.7 ): 
+ - Inline keyboard added
+ - Default sample bot updated
+
+### new features
+- [x] modularly write functioons
+- [x] middleware
+- [x] inline keyboard
+- [ ] on type message middlewares
+- [ ] change directory of main folders
+- [ ] change session data information and params
+
+
 > #### auto require
 > - you can have classes of functions that you can use without requiring anywhere
 > - you can define each kind of replies list that is based on *sessions*
 > - you can define your keyboards very easy and use them without requiring
 > - you can define middleware and use them without require
-
-### last update ( 1.0.6 ): 
- - issue fixed 
-
-### new features
-- [x] modularly write functioons
-- [x] middleware
-- [ ] on type message middlewares
-- [ ] change directory of main folders
-- [ ] change session data information and params
-
 
 ## installation
 ```
