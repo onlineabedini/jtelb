@@ -166,6 +166,7 @@ module.exports = new class bot_app {
     lunch_bot() {
         try {
             bot.launch()
+            console.log(def_data.def_start)
         }
         catch {
             console.log(def_data.def_token)
