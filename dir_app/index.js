@@ -10,7 +10,14 @@ const default_keyboard_data = require('./default_data/keyboard').default_data
 const default_reply_data = require('./default_data/reply').default_data
 
 module.exports = new class dir_app {
-    // middleware
+    constructor(){
+        this.build_middleware()
+        this.build_function()
+        this.build_reply()
+        this.build_keyboard()
+        this.build_src()
+    }
+
     build_middleware(){
         if (!fs.existsSync(__dirname + directory + 'middleware')){
             fs.mkdirSync('./middleware');
@@ -18,7 +25,6 @@ module.exports = new class dir_app {
         }
     }
    
-    // function
     build_function(){
         if (!fs.existsSync(__dirname + directory + 'functions')){
             fs.mkdirSync('./functions');
@@ -26,7 +32,6 @@ module.exports = new class dir_app {
         }
     }
 
-    // reply
     build_reply(){
         if (!fs.existsSync(__dirname + directory + 'reply')){
             fs.mkdirSync('./reply');
@@ -34,7 +39,6 @@ module.exports = new class dir_app {
         }
     }
 
-    // keyboard
     build_keyboard(){
         if (!fs.existsSync(__dirname + directory + 'keyboard')){
             fs.mkdirSync('./keyboard');
@@ -42,7 +46,6 @@ module.exports = new class dir_app {
         }
     }
 
-    // src
     build_src(){
         if (!fs.existsSync(__dirname + directory + 'src')){
             fs.mkdirSync('./src');
