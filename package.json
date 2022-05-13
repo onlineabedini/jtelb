@@ -2,7 +2,7 @@
   "name": "jtelb",
   "license": "MIT",
   "version": "1.0.8",
-  "description": "this is jgram package",
+  "description": "Jtelb is a special telegram bot framework based on telegrafjs that makes it close to web Node js project structure.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
