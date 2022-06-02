@@ -1,4 +1,0 @@
-in main server file ( like : main index.js of the project ) make new from bot and
-use this methot to run:
-
-bot.define_bot(bot_token, start_message)

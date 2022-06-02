@@ -1,7 +1,7 @@
 default_data = `
 // you can require functions here
 module.exports.main_keyboard_replyes = {
-    "Hello world!": [ ['*', "Hello dear developer! celcome to Jtelb", '', 'said_hello'] ],
+    "Hello world!": [ ['*', "Hello dear developer! welcome to Jtelb", '', 'said_hello'] ],
     "ُSend several answers": [
          ['*', "this is answer (1)", '', ''], 
          ['*', "this is answer (2)", '', ''], 
