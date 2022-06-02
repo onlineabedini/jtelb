@@ -9,6 +9,6 @@ module.exports = {
     def_start: 
     `
                         -------- Jtelb --------
-        ( Bot is running!! ) Jtelb telegram group -> https://t.me/jtelb 
+                            Bot is running!!
     `
 }

@@ -1,5 +1,5 @@
 const fs = require('fs');
-const directory = './../../../'
+const directory = './../../../bot_app/'
 
 const default_middleware_data = require('./default_data/middleware').default_data
 
@@ -11,11 +11,16 @@ const default_reply_data = require('./default_data/reply').default_data
 
 module.exports = new class dir_app {
     constructor(){
+        this.build_main()
         this.build_middleware()
         this.build_function()
         this.build_reply()
         this.build_keyboard()
         this.build_src()
+    }
+
+    build_main(){
+        if (!fs.existsSync(__dirname + directory)) fs.mkdirSync('./bot_app')
     }
 
     build_middleware(){

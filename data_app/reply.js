@@ -3,7 +3,7 @@ let reply_list = {}
 let export_data = {}
 
 function export_all(sec_path) {
-    let path = __dirname + './../../../reply/'
+    let path = __dirname + './../../../bot_app/reply/'
     if (sec_path) path = sec_path
     fs.readdirSync(path).forEach(file => {
         if (fs.lstatSync(path + file).isDirectory()) {

@@ -36,7 +36,7 @@ module.exports = new class bot_app {
     }
 
     require_func(sec_path) {
-        let path = __dirname + '/../../functions/'
+        let path = __dirname + '/../../bot_app/functions/'
         if (sec_path) path = sec_path
         fs.readdirSync(path).forEach(file => {
             if (fs.lstatSync(path + file).isDirectory()) {
@@ -63,7 +63,7 @@ module.exports = new class bot_app {
     }
 
     bot_middleware(sec_path) {
-        let path = __dirname + '/../../middleware/'
+        let path = __dirname + '/../../bot_app/middleware/'
         if (sec_path) path = sec_path
 
         fs.readdirSync(path).forEach(file => {

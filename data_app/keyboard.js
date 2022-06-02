@@ -3,7 +3,7 @@ let keyboard_list = {}
 let export_data = {}
 
 function export_all(sec_path) {
-    let path = __dirname + './../../../keyboard/'
+    let path = __dirname + './../../../bot_app/keyboard/'
     if (sec_path) path = sec_path
     fs.readdirSync(path).forEach(file => {
         if (fs.lstatSync(path + file).isDirectory()) {
