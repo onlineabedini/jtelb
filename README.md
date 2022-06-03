@@ -95,8 +95,17 @@ module.exports.main_keyboard_replyes = {
 }
 ```
 
+**/reply**
+
+inside src you can put your images and files that you want to send from local
 
 
+** ask us your questions in telegram group: **
+
+https://t.me/jtelb
+```
+@jtelb
+```
 
 ### Github repository
 https://github.com/onlineabedini/jtelb/
