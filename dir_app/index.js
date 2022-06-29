@@ -16,7 +16,6 @@ module.exports = new class dir_app {
         this.build_function()
         this.build_reply()
         this.build_keyboard()
-        this.build_src()
     }
 
     build_main(){
@@ -51,9 +50,4 @@ module.exports = new class dir_app {
         }
     }
 
-    build_src(){
-        if (!fs.existsSync(__dirname + directory + 'src')){
-            fs.mkdirSync('./bot_app/src');
-        }
-    }
 }

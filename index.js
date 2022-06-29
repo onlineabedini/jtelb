@@ -73,8 +73,7 @@ module.exports = new class bot_app {
             } else if (file.endsWith('.js')) {
                 let middleware = require(path + file)
                 bot.use((ctx, next) => {
-                    middleware.data(ctx)
-                    next()
+                    new middleware(ctx, next)
                 })
             }
         })
