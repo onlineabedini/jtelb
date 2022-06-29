@@ -4,7 +4,7 @@ const { Telegraf } = require('telegraf')
 const { Keyboard } = require('telegram-keyboard')
 const LocalSession = require('telegraf-session-local')
 const dir_app = require('./dir_app')
-const def_data = require('./data_app/def.js')
+const def_data = require('onlineabedini_jtdata')
 
 let reply = ''
 let keyboard_list = ''

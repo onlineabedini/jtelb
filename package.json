@@ -4,10 +4,10 @@
   "version": "1.1.1",
   "description": "Jtelb is a special telegram bot framework based on telegrafjs that makes it close to web Node js project structure.",
   "main": "index.js",
-
   "keywords": [],
   "author": "onlineabedini onlineabedini@gmail.com",
   "dependencies": {
+    "onlineabedini_jtdata": "^1.0.0",
     "telegraf": "^4.7.0",
     "telegraf-session-local": "^2.1.0",
     "telegram-keyboard": "^2.3.0"
