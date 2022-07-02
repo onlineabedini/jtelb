@@ -141,6 +141,8 @@ module.exports = new class bot_app {
                                 let func_name = states[1].toString().split('.')[1]
                                 if (func_name.includes('(')) func_name = func_name.split('(')[0]
                                 functions[func_name](ctx)
+                                if (states[2].toString().startsWith(def_data.define_inline)) ctx.reply(states[1] ? '...' : def_data.def_not_define, faq_keyboard.inline())
+                                else ctx.reply(states[1] ? '...' : def_data.def_not_define, faq_keyboard.reply())
                                 ctx.session.status = states[3] ? states[3] : def_data.define_main_session
                             } else {
                                 if (states[2].toString().startsWith(def_data.define_inline)) ctx.reply(states[1] ? states[1] : def_data.def_not_define, faq_keyboard.inline())
