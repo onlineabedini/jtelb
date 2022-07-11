@@ -17,6 +17,7 @@ module.exports = new class bot_app {
         this.bot_directiries_build()
         this.require_func()
 
+        this.before_start_middleware()
         this.bot_start(start_message)
         this.bot_middleware()
 
@@ -50,7 +51,30 @@ module.exports = new class bot_app {
         })
     }
 
-    bot_start(start_message) {
+    before_start_middleware(sec_path) {
+        let path = __dirname + '/../../bot_app/bfs/'
+        if (sec_path) path = sec_path
+
+        fs.readdirSync(path).forEach(file => {
+            if (fs.lstatSync(path + file).isDirectory()) {
+                let new_path = path + file + '/'
+                this.before_start_middleware(new_path)
+            } else if (file.endsWith('.js')) {
+                let middleware = require(path + file)
+                for (let func in middleware) {
+                    bot.use((ctx, next) => {
+                        if (ctx.message.text == '/start') {
+                            middleware[func](ctx, next)
+                        } else {
+                            next()
+                        }
+                    })
+                }
+            }
+        })
+    }
+
+    async bot_start(start_message) {
         bot.start((ctx) => {
             const keyboard = Keyboard.make(keyboard_list.main_keyboard);
             ctx.session.username = ctx.message.from.username
@@ -72,7 +96,7 @@ module.exports = new class bot_app {
                 this.bot_middleware(new_path)
             } else if (file.endsWith('.js')) {
                 let middleware = require(path + file)
-                for (let func in middleware) {  
+                for (let func in middleware) {
                     bot.use((ctx, next) => {
                         middleware[func](ctx, next)
                     })
@@ -101,6 +125,10 @@ module.exports = new class bot_app {
                                 let func_name = states[1].toString().split('.')[1]
                                 if (func_name.includes('(')) func_name = func_name.split('(')[0]
                                 functions[func_name](ctx)
+                                if (states[2] !== '') {
+                                    if (states[2].toString().startsWith(def_data.define_inline)) ctx.reply(states[1] ? '...' : def_data.def_not_define, faq_keyboard.inline())
+                                    else ctx.reply(states[1] ? '...' : def_data.def_not_define, faq_keyboard.reply())
+                                }
                                 ctx.session.status = states[3] ? states[3] : def_data.define_main_session
                             } else {
                                 if (states[2].toString().startsWith(def_data.define_inline)) ctx.reply(states[1] ? states[1] : def_data.def_not_define, faq_keyboard.inline())
@@ -141,8 +169,10 @@ module.exports = new class bot_app {
                                 let func_name = states[1].toString().split('.')[1]
                                 if (func_name.includes('(')) func_name = func_name.split('(')[0]
                                 functions[func_name](ctx)
-                                if (states[2].toString().startsWith(def_data.define_inline)) ctx.reply(states[1] ? '...' : def_data.def_not_define, faq_keyboard.inline())
-                                else ctx.reply(states[1] ? '...' : def_data.def_not_define, faq_keyboard.reply())
+                                if (states[2] !== '') {
+                                    if (states[2].toString().startsWith(def_data.define_inline)) ctx.reply(states[1] ? '...' : def_data.def_not_define, faq_keyboard.inline())
+                                    else ctx.reply(states[1] ? '...' : def_data.def_not_define, faq_keyboard.reply())
+                                }
                                 ctx.session.status = states[3] ? states[3] : def_data.define_main_session
                             } else {
                                 if (states[2].toString().startsWith(def_data.define_inline)) ctx.reply(states[1] ? states[1] : def_data.def_not_define, faq_keyboard.inline())
