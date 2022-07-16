@@ -9,6 +9,8 @@ const default_keyboard_data = require('./default_data/keyboard').default_data
 
 const default_reply_data = require('./default_data/reply').default_data
 
+const default_ignore_data = require('./default_data/ignore').default_data
+
 module.exports = new class dir_app {
     constructor() {
         this.build_main()
@@ -17,6 +19,7 @@ module.exports = new class dir_app {
         this.build_function()
         this.build_reply()
         this.build_keyboard()
+        this.build_ignore()
     }
 
     build_main() {
@@ -55,6 +58,11 @@ module.exports = new class dir_app {
         if (!fs.existsSync(__dirname + directory + 'keyboard')) {
             fs.mkdirSync('./bot_app/keyboard');
             fs.writeFileSync('./bot_app/keyboard/main_keyboard.js', default_keyboard_data)
+        }
+    }
+    build_ignore(){
+        if (!fs.existsSync(__dirname + '.gitignore')) {
+            fs.writeFileSync('./.gitignore', default_ignore_data)
         }
     }
 
